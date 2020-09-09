@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+import os
 
 # creates a sqlite database with tables for events and conditions
 def create_connection(db_file):
@@ -25,7 +26,10 @@ def create_table(conn, create_table_sql):
         print(e)
 
 def main():
-    database = r"C:\Users\deand\OneDrive\Documents\sqlite\db\pythonsqlite.db"
+    db_dir = input("enter directory for database:\n")
+    db_name = (input("enter database name:\n")) + '.db'
+    database = os.path.join(db_dir, db_name)
+
 
     sql_create_conditions_table = """ CREATE TABLE IF NOT EXISTS Conditions (
                                         "condID"	integer UNIQUE,
